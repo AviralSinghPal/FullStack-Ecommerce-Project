@@ -53,7 +53,6 @@ userSchema.methods= {
     {
         return await bcrypt.compare(enteredPassword,this.password)
     },
-
     //genrate JWT token
     getJwtToken: function () {
         return JWT.sign({
@@ -65,6 +64,17 @@ userSchema.methods= {
             expiresIn: config.JWT_EXPIRY
         }
         )  
+    },
+    genrateForgotPasswordToken: function () {
+        const forgotToken = crypto.randomBytes(20).toString('hex');
+
+        //step1 : save to DB
+        this.forgotPasswordToken = crypto.createHash("sha256").update(forgotToken).digest("hex");
+
+        this.forgotPasswordExpiry = Date.now()+20*60*1000;
+        
+        //step2: return value to user
+        return forgotToken;
     }
 }
 
