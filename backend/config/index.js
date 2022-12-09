@@ -10,7 +10,8 @@ const config = {
     SMTP_MAIL_HOST: valueone,
     SMTP_MAIL_PORT: valuetwo,
     SMTP_MAIL_USERNAME: valuethree,
-    SMTP_MAIL_PASSWORD: valuefour
+    SMTP_MAIL_PASSWORD: valuefour,
+    SMTP_MAIL_EMAIL: valuefive
 }
 
 export default config
